@@ -1,0 +1,157 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VoiceRecognitionDisplay.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VoiceRecognitionDisplay.Views.ColorPickerPanel"
+             x:DataType="vm:ColorPickerViewModel"
+             Background="Transparent">
+
+    <Grid Background="Transparent"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Top">
+        <Border Width="350"
+                Background="White"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="12"
+                Padding="15">
+            <StackPanel Spacing="15">
+            <Border Height="220"
+                    CornerRadius="8"
+                    BorderThickness="1"
+                    BorderBrush="#DDDDDD"
+                    ClipToBounds="True"
+                    Name="ColorPickerArea"
+                    PointerPressed="ColorPickerArea_PointerPressed"
+                    PointerMoved="ColorPickerArea_PointerMoved"
+                    PointerReleased="InteractiveBorder_PointerReleased">
+                <Grid>
+                    <Border Background="{Binding HueColorBrush}"/>
+
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                                <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                <GradientStop Color="#00FFFFFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+                                <GradientStop Color="#00000000" Offset="0"/>
+                                <GradientStop Color="#FF000000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <Grid RowDefinitions="Auto,10,Auto" ColumnDefinitions="50,*">
+                <Border Grid.Row="0"
+                        Grid.Column="0"
+                        Width="40"
+                        Height="40"
+                        CornerRadius="20"
+                        BorderThickness="2"
+                        BorderBrush="#DDDDDD"
+                        Background="{Binding SelectedBrush}"/>
+
+                <Border Grid.Row="0"
+                        Grid.Column="1"
+                        Height="40"
+                        CornerRadius="6"
+                        Margin="10,0,0,0"
+                        Name="HueBar"
+                        PointerPressed="HueBar_PointerPressed"
+                        PointerMoved="HueBar_PointerMoved"
+                        PointerReleased="InteractiveBorder_PointerReleased"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                            <GradientStop Color="#FFFF0000" Offset="0.00"/>
+                            <GradientStop Color="#FFFFFF00" Offset="0.17"/>
+                            <GradientStop Color="#FF00FF00" Offset="0.33"/>
+                            <GradientStop Color="#FF00FFFF" Offset="0.50"/>
+                            <GradientStop Color="#FF0000FF" Offset="0.67"/>
+                            <GradientStop Color="#FFFF00FF" Offset="0.83"/>
+                            <GradientStop Color="#FFFF0000" Offset="1.00"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <Border Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Height="25"
+                        CornerRadius="6"
+                        Name="ValueBar"
+                        PointerPressed="ValueBar_PointerPressed"
+                        PointerMoved="ValueBar_PointerMoved"
+                        PointerReleased="InteractiveBorder_PointerReleased"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0%,50%" EndPoint="100%,50%">
+                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                            <GradientStop Color="#FF808080" Offset="0.5"/>
+                            <GradientStop Color="#FF000000" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+
+            <StackPanel Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBox Grid.Column="0"
+                             Text="{Binding HexColor}"
+                             Watermark="#000000"
+                             Height="40"
+                             FontSize="16"
+                             FontWeight="Medium"
+                             TextAlignment="Center"
+                             VerticalContentAlignment="Center"
+                             Margin="0,0,10,0"/>
+                    <TextBlock Grid.Column="1"
+                               Text="HEX"
+                               FontSize="14"
+                               Foreground="#999999"
+                               VerticalAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        Spacing="10"
+                        HorizontalAlignment="Right">
+                <Button Content="取消"
+                        Width="90"
+                        Height="40"
+                        ClickMode="Press"
+                        Background="White"
+                        Foreground="#666666"
+                        BorderThickness="1"
+                        BorderBrush="#DDDDDD"
+                        CornerRadius="6"
+                        FontSize="14"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding CancelCommand}"/>
+                <Button Content="确定"
+                        Width="90"
+                        Height="40"
+                        ClickMode="Press"
+                        Background="#0078D4"
+                        Foreground="White"
+                        BorderThickness="0"
+                        CornerRadius="6"
+                        FontSize="14"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Command="{Binding ConfirmCommand}"/>
+            </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

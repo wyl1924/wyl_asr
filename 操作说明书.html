@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>操作说明书.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="wyl-asr-%E6%93%8D%E4%BD%9C%E8%AF%B4%E6%98%8E%E4%B9%A6">WYL ASR 操作说明书</h1>
+<p><strong>文档版本</strong>：V1.2
+<strong>编写日期</strong>：2026-06-24
+<strong>适用范围</strong>：WYL ASR 实时语音识别、会议转录、会议纪要与说话人管理</p>
+<hr>
+<h2 id="1-%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E">1. 文档说明</h2>
+<p>本文档面向日常使用人员，重点说明以下内容：</p>
+<ul>
+<li>如何启动前端和后端服务</li>
+<li>如何开始录音、查看转录、生成纪要</li>
+<li>如何上传已有音频或视频文件并转换为文字</li>
+<li>如何选择不同会议纪要模板</li>
+<li>如何设置说话人、串口和热词</li>
+<li>如何保存、下载和管理会议记录</li>
+<li>常见问题的处理方法</li>
+</ul>
+<p>如需开发或部署细节，请结合项目 <code>README.md</code> 使用。</p>
+<hr>
+<h2 id="2-%E4%BD%BF%E7%94%A8%E5%89%8D%E5%87%86%E5%A4%87">2. 使用前准备</h2>
+<h3 id="21-%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">2.1 环境准备</h3>
+<p>使用前请确认以下条件已满足：</p>
+<ul>
+<li>已安装 Python 运行环境，并可正常执行 <code>python main.py</code></li>
+<li>已准备前端运行环境，可执行 <code>npm run dev</code></li>
+<li>浏览器建议使用 Chrome 或 Edge</li>
+<li>电脑麦克风可正常使用，浏览器已授予录音权限</li>
+<li>如需上传视频或非 WAV 音频，建议确认 FFmpeg 可用，或使用仓库内置 <code>tools/bin/ffmpeg</code></li>
+</ul>
+<h3 id="22-%E9%BB%98%E8%AE%A4%E6%9C%8D%E5%8A%A1%E5%9C%B0%E5%9D%80">2.2 默认服务地址</h3>
+<p>系统默认使用以下端口：</p>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>默认地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前端开发页面</td>
+<td><code>http://localhost:5173</code></td>
+</tr>
+<tr>
+<td>WebSocket 识别服务</td>
+<td><code>ws://localhost:10095</code></td>
+</tr>
+<tr>
+<td>API 服务</td>
+<td><code>http://localhost:8080</code></td>
+</tr>
+<tr>
+<td>健康检查</td>
+<td><code>http://localhost:8080/api/health</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>如果服务器部署在其他机器上，请将 <code>localhost</code> 替换为对应服务器 IP。</p>
+</blockquote>
+<h3 id="23-%E9%A6%96%E6%AC%A1%E4%BD%BF%E7%94%A8%E5%89%8D%E4%B8%8B%E8%BD%BD%E6%A8%A1%E5%9E%8B">2.3 首次使用前下载模型</h3>
+<p>首次运行建议先下载模型：</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> wyl_asr
+python organize_models.py
+</div></code></pre>
+<p>看到模型下载完成提示后再继续后续操作。</p>
+<hr>
+<h2 id="3-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E4%B8%8E%E5%81%9C%E6%AD%A2">3. 系统启动与停止</h2>
+<h3 id="31-%E5%90%AF%E5%8A%A8%E5%89%8D%E7%AB%AF">3.1 启动前端</h3>
+<p>首次运行：</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> wyl_asr/ui
+npm install
+npm run dev
+</div></code></pre>
+<p>启动完成后，在浏览器打开：</p>
+<pre class="hljs"><code><div>http://localhost:5173
+</div></code></pre>
+<h3 id="32-%E5%90%AF%E5%8A%A8%E5%90%8E%E7%AB%AF">3.2 启动后端</h3>
+<p>当前版本推荐先打开前端，再通过“系统设置”页面启动后端。</p>
+<p>操作步骤：</p>
+<ol>
+<li>打开首页</li>
+<li>点击左侧 <code>系统设置</code></li>
+<li>根据需要调整主机、端口、模型、硬件参数</li>
+<li>点击 <code>直接启动服务</code> 或 <code>保存并启动</code></li>
+</ol>
+<p>如页面启动失败，可按页面提示复制命令，在终端手动执行。例如：</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> wyl_asr
+conda activate funasr-ws
+python main.py --host 0.0.0.0 --port 10095 --api-port 8080
+</div></code></pre>
+<h3 id="33-%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F%E6%A0%87%E5%BF%97">3.3 启动成功标志</h3>
+<p>后端正常启动后，终端通常会出现类似日志：</p>
+<pre class="hljs"><code><div>🌐 启动数据库API服务器: http://0.0.0.0:8080
+🔗 API服务器已在后台启动
+⚡ 服务器已就绪，等待客户端连接...
+</div></code></pre>
+<h3 id="34-%E5%81%9C%E6%AD%A2%E6%9C%8D%E5%8A%A1">3.4 停止服务</h3>
+<ul>
+<li>停止前端：在前端运行终端按 <code>Ctrl + C</code></li>
+<li>停止后端：在后端运行终端按 <code>Ctrl + C</code></li>
+</ul>
+<hr>
+<h2 id="4-%E9%A6%96%E9%A1%B5%E5%8A%9F%E8%83%BD">4. 首页功能</h2>
+<p>首页主要包括左侧菜单、快速流程入口和右侧会议列表。</p>
+<h3 id="41-%E5%B7%A6%E4%BE%A7%E8%8F%9C%E5%8D%95">4.1 左侧菜单</h3>
+<table>
+<thead>
+<tr>
+<th>菜单</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>开始录音</code></td>
+<td>新建会议并进入录音页面</td>
+</tr>
+<tr>
+<td><code>说话人注册</code></td>
+<td>当前版本实际进入“串口单元号绑定管理”页面</td>
+</tr>
+<tr>
+<td><code>热词设置</code></td>
+<td>管理识别热词及权重</td>
+</tr>
+<tr>
+<td><code>系统设置</code></td>
+<td>配置并启动后端服务</td>
+</tr>
+<tr>
+<td><code>字幕设置</code></td>
+<td>调整字幕相关显示配置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-%E5%BF%AB%E9%80%9F%E6%B5%81%E7%A8%8B%E5%85%A5%E5%8F%A3">4.2 快速流程入口</h3>
+<p>首页提供两个常用工作流入口：</p>
+<table>
+<thead>
+<tr>
+<th>入口</th>
+<th>适用场景</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>实时识别</code></td>
+<td>现场会议、边说边转写</td>
+<td>进入实时转录工作台，使用麦克风或服务器采集生成转录</td>
+</tr>
+<tr>
+<td><code>上传音视频</code></td>
+<td>已有录音、会议视频、离线文件</td>
+<td>进入上传识别工作台，上传文件后生成转写、说话人分段和会议纪要</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-%E5%8F%B3%E4%BE%A7%E4%BC%9A%E8%AE%AE%E5%88%97%E8%A1%A8">4.3 右侧会议列表</h3>
+<p>会议列表支持以下操作：</p>
+<ul>
+<li><code>搜索</code>：按会议名称或时间过滤记录</li>
+<li><code>查看</code>：打开会议详情页</li>
+<li><code>分享</code>：弹出分享信息；是否可直接对外访问取决于当前部署环境</li>
+<li><code>下载</code>：下载音频、转录或会议纪要</li>
+<li><code>删除</code>：删除该条会议记录</li>
+<li><code>批量下载</code>：导出当前页面中的会议记录文本</li>
+</ul>
+<hr>
+<h2 id="5-%E6%A0%87%E5%87%86%E5%BD%95%E9%9F%B3%E6%B5%81%E7%A8%8B">5. 标准录音流程</h2>
+<p>这是日常最常用的一套操作流程，建议按以下顺序使用。</p>
+<h3 id="51-%E8%BF%9B%E5%85%A5%E5%BD%95%E9%9F%B3%E9%A1%B5%E9%9D%A2">5.1 进入录音页面</h3>
+<p>在首页点击 <code>开始录音</code>，系统会自动生成会议标题和文件名，并打开录音页面。</p>
+<h3 id="52-%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E8%AF%B4%E6%98%8E">5.2 页面布局说明</h3>
+<p>录音页面主要分为两部分：</p>
+<ul>
+<li>左侧：实时转录区</li>
+<li>右侧：会议纪要编辑区</li>
+</ul>
+<p>页面顶部可编辑会议标题，右上角有 <code>保存会议</code> 按钮。</p>
+<h3 id="53-%E9%80%89%E6%8B%A9%E9%87%87%E9%9B%86%E6%96%B9%E5%BC%8F">5.3 选择采集方式</h3>
+<p>底部控制区可切换音频采集模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>浏览器采集</code></td>
+<td>由浏览器读取本机麦克风，适合普通使用场景</td>
+</tr>
+<tr>
+<td><code>服务器采集</code></td>
+<td>由服务器端采集音频，适合特殊硬件接入场景</td>
+</tr>
+</tbody>
+</table>
+<p>如果使用 <code>浏览器采集</code>，请确认浏览器已授权麦克风权限，并在设置中选择正确的音频设备。</p>
+<h3 id="54-%E5%BC%80%E5%A7%8B%E4%B8%8E%E5%81%9C%E6%AD%A2%E5%BD%95%E9%9F%B3">5.4 开始与停止录音</h3>
+<p>操作步骤：</p>
+<ol>
+<li>检查标题、文件名和采集模式</li>
+<li>点击右下角圆形录音按钮开始录音</li>
+<li>录音过程中观察左侧转录内容，必要时调整麦克风、说话人或热词配置</li>
+<li>会议结束后再次点击录音按钮停止录音</li>
+<li>检查转录内容，确认无明显缺失后再生成纪要或保存会议</li>
+</ol>
+<h3 id="55-%E7%94%9F%E6%88%90%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81">5.5 生成会议纪要</h3>
+<p>录音结束后，可以基于当前转录内容生成会议纪要。</p>
+<p>操作步骤：</p>
+<ol>
+<li>确认右侧 <code>会议纪要</code> 区域为显示状态</li>
+<li>点击右下角齿轮图标打开 <code>系统设置</code></li>
+<li>在 <code>会议纪要模型服务配置</code> 中确认服务类型、模型和接口参数</li>
+<li>在 <code>纪要模板</code> 中选择需要的模板</li>
+<li>点击 <code>测试生成纪要</code></li>
+<li>等待生成完成后，在右侧纪要区查看和修订内容</li>
+</ol>
+<p>内置模板说明：</p>
+<table>
+<thead>
+<tr>
+<th>模板</th>
+<th>适用场景</th>
+<th>内容特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>标准会议纪要</code></td>
+<td>例会、沟通会、普通会议</td>
+<td>按摘要、议题、决议、待办和后续安排组织</td>
+</tr>
+<tr>
+<td><code>方案评审纪要</code></td>
+<td>方案评审会、产品需求会、系统优化评审</td>
+<td>按主题和方案归类，突出会议主题、发言人、摘要和待办</td>
+</tr>
+</tbody>
+</table>
+<p>模板选择会保存在浏览器本地，下次生成纪要时默认沿用上次选择。</p>
+<h3 id="56-%E4%BF%9D%E5%AD%98%E4%BC%9A%E8%AE%AE">5.6 保存会议</h3>
+<p>确认转录和会议纪要后，点击页面右上角 <code>保存会议</code>。</p>
+<p>保存后系统会记录：</p>
+<ul>
+<li>会议标题和时间</li>
+<li>转录文本</li>
+<li>说话人分段</li>
+<li>会议纪要</li>
+<li>录音或上传文件信息</li>
+</ul>
+<hr>
+<h2 id="6-%E4%B8%8A%E4%BC%A0%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E4%BB%B6%E8%BD%AC%E6%96%87%E5%AD%97">6. 上传音视频文件转文字</h2>
+<p>上传识别适用于已有录音、会议视频或离线音频文件。系统会把上传文件转换为可识别音频，离线生成转写、说话人分段，并可继续生成会议纪要。</p>
+<h3 id="61-%E8%BF%9B%E5%85%A5%E4%B8%8A%E4%BC%A0%E8%AF%86%E5%88%AB">6.1 进入上传识别</h3>
+<p>操作步骤：</p>
+<ol>
+<li>打开首页</li>
+<li>点击 <code>上传音视频</code></li>
+<li>进入上传识别工作台</li>
+</ol>
+<p>页面标题通常会自动生成类似“某年某月某日上传识别”的名称，也可以在顶部手动修改。</p>
+<h3 id="62-%E4%B8%8A%E4%BC%A0%E5%89%8D%E9%85%8D%E7%BD%AE">6.2 上传前配置</h3>
+<p>上传区域提供以下配置：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>预计人数</code></td>
+<td>可留空自动判断，也可填写固定人数或范围，例如 <code>2</code>、<code>2-4</code></td>
+</tr>
+<tr>
+<td><code>热词范围</code></td>
+<td>选择本次上传识别要使用的热词分类</td>
+</tr>
+<tr>
+<td><code>声纹匹配</code></td>
+<td>开启后尝试把临时说话人匹配为已注册人员</td>
+</tr>
+<tr>
+<td><code>中英翻译</code></td>
+<td>开启后生成原文和译文</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-%E9%80%89%E6%8B%A9%E6%96%87%E4%BB%B6%E5%B9%B6%E7%AD%89%E5%BE%85%E8%AF%86%E5%88%AB">6.3 选择文件并等待识别</h3>
+<p>操作步骤：</p>
+<ol>
+<li>点击 <code>选择文件</code> 或底部 <code>上传音视频识别</code></li>
+<li>选择本地音频或视频文件</li>
+<li>等待上传和识别任务执行</li>
+<li>进度弹窗显示当前阶段和进度，必要时可点击 <code>取消识别</code></li>
+<li>识别完成后，转写结果会显示在左侧内容区</li>
+</ol>
+<p>常见支持格式包括 <code>.wav</code>、<code>.mp3</code>、<code>.m4a</code>、<code>.flac</code>、<code>.mp4</code>、<code>.mov</code>、<code>.mkv</code>、<code>.avi</code> 等。视频文件会先抽取音轨再识别。</p>
+<h3 id="64-%E6%9F%A5%E7%9C%8B%E5%92%8C%E6%95%B4%E7%90%86%E4%B8%8A%E4%BC%A0%E7%BB%93%E6%9E%9C">6.4 查看和整理上传结果</h3>
+<p>上传识别完成后可以进行以下操作：</p>
+<ul>
+<li>查看完整转录文本</li>
+<li>查看按说话人拆分的分段</li>
+<li>播放上传文件或片段音频</li>
+<li>点击 <code>说话人整理</code> 对候选说话人进行试听、合并、更名</li>
+<li>从高质量片段注册说话人声纹</li>
+<li>点击 <code>重新上传</code> 替换文件重新识别</li>
+</ul>
+<p>整理结果会立即回写到当前上传转写内容。完成整理后建议再生成会议纪要。</p>
+<h3 id="65-%E5%9F%BA%E4%BA%8E%E4%B8%8A%E4%BC%A0%E7%BB%93%E6%9E%9C%E7%94%9F%E6%88%90%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81">6.5 基于上传结果生成会议纪要</h3>
+<p>上传音视频转文字完成后，生成纪要的方法和实时录音一致：</p>
+<ol>
+<li>打开右下角 <code>系统设置</code></li>
+<li>确认 <code>会议纪要区域</code> 为显示状态</li>
+<li>选择 <code>纪要模板</code></li>
+<li>点击 <code>测试生成纪要</code></li>
+<li>检查并修订右侧会议纪要</li>
+<li>点击右上角 <code>保存识别结果</code></li>
+</ol>
+<p>保存后，该条记录会在首页列表中显示为上传识别类型，后续可以进入详情页查看转录、音视频和会议纪要。</p>
+<hr>
+<h2 id="7-%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%92%8C%E4%B8%B2%E5%8F%A3%E8%AE%BE%E7%BD%AE">7. 说话人和串口设置</h2>
+<h3 id="71-%E6%8C%87%E5%AE%9A%E5%8F%82%E4%BC%9A%E4%BA%BA">7.1 指定参会人</h3>
+<p>录音或上传识别过程中，如果系统未能自动识别正确说话人，可以在说话人相关弹窗中手动指定参会人。</p>
+<p>常见用途：</p>
+<ul>
+<li>临时指定当前发言人</li>
+<li>修正自动匹配错误的说话人名称</li>
+<li>在没有声纹样本时先用人工名称标注</li>
+</ul>
+<h3 id="72-%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%A3%B0%E7%BA%B9%E6%B3%A8%E5%86%8C">7.2 说话人声纹注册</h3>
+<p>系统支持通过录音或上传音频片段注册说话人声纹。注册后，后续实时识别和上传识别可以尝试自动匹配人员身份。</p>
+<p>建议：</p>
+<ul>
+<li>每位说话人尽量提供清晰、无背景噪声的样本</li>
+<li>样本中尽量只包含一个人的声音</li>
+<li>上传识别完成后，可从高质量候选片段中直接注册声纹</li>
+</ul>
+<h3 id="73-%E4%B8%B2%E5%8F%A3%E9%85%8D%E7%BD%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">7.3 串口配置注意事项</h3>
+<p>如果现场设备需要通过串口单元号绑定说话人，请先确认串口设备已连接，并在系统中完成对应绑定。</p>
+<blockquote>
+<p>修改串口配置后，需要重启 ASR 服务器才能生效。</p>
+</blockquote>
+<h3 id="74-%E5%8D%95%E5%85%83%E5%8F%B7%E7%BB%91%E5%AE%9A">7.4 单元号绑定</h3>
+<p>页面支持：</p>
+<ul>
+<li>搜索单元号或说话人</li>
+<li>编辑绑定关系</li>
+<li><code>保存全部</code></li>
+<li><code>刷新</code></li>
+</ul>
+<h3 id="75-%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9F%E5%8F%AF%E7%94%A8%E4%B8%B2%E5%8F%A3">7.5 查看系统可用串口</h3>
+<p>如需在终端查看当前可用串口，可执行：</p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> wyl_asr
+python main.py --list_serial_ports
+</div></code></pre>
+<p>如不需要串口功能，可使用：</p>
+<pre class="hljs"><code><div>python main.py --disable_serial
+</div></code></pre>
+<hr>
+<h2 id="8-%E7%83%AD%E8%AF%8D%E8%AE%BE%E7%BD%AE">8. 热词设置</h2>
+<p>热词用于提升专有名词、产品名、人名等内容的识别准确率。</p>
+<h3 id="81-%E8%BF%9B%E5%85%A5%E9%A1%B5%E9%9D%A2">8.1 进入页面</h3>
+<p>首页点击 <code>热词设置</code>。</p>
+<h3 id="82-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C">8.2 常用操作</h3>
+<p>页面支持以下功能：</p>
+<ul>
+<li>新增热词</li>
+<li>设置权重</li>
+<li>编辑热词</li>
+<li>删除热词</li>
+<li>保存热词</li>
+<li>刷新热词</li>
+<li>清空所有热词</li>
+<li>导出热词</li>
+<li>导入热词</li>
+<li>点击预设热词快速加入</li>
+</ul>
+<h3 id="83-%E6%9D%83%E9%87%8D%E8%AF%B4%E6%98%8E">8.3 权重说明</h3>
+<p>热词权重范围通常为 <code>1</code> 到 <code>100</code>：</p>
+<ul>
+<li>权重越高，识别时越容易命中该词</li>
+<li>建议优先给关键人名、项目名、术语更高权重</li>
+</ul>
+<h3 id="84-%E7%94%9F%E6%95%88%E5%BB%BA%E8%AE%AE">8.4 生效建议</h3>
+<p>修改热词后建议：</p>
+<ol>
+<li>先点击 <code>保存热词</code></li>
+<li>再开始新的录音任务</li>
+</ol>
+<hr>
+<h2 id="9-%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81%E4%B8%8E%E5%BD%95%E9%9F%B3%E9%A1%B5%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE">9. 会议纪要与录音页系统设置</h2>
+<h3 id="91-%E5%BD%95%E9%9F%B3%E9%A1%B5%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE">9.1 录音页系统设置</h3>
+<p>录音页右下角有一个齿轮图标按钮，点击后弹出 <code>系统设置</code> 面板。以下逐项说明面板中的各个配置项。</p>
+<h4 id="911-%E8%AF%86%E5%88%AB%E6%A8%A1%E5%BC%8F">9.1.1 识别模式</h4>
+<p>用于选择语音识别引擎的工作模式，不同模式在延迟和准确率之间有所取舍。</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>双通道模式</code></td>
+<td><code>2pass</code></td>
+<td><strong>默认推荐</strong>。先快速输出在线结果，再用离线模型修正，兼顾实时性和准确率</td>
+</tr>
+<tr>
+<td><code>在线模式</code></td>
+<td><code>online</code></td>
+<td>仅使用流式在线模型，延迟最低，但准确率略低</td>
+</tr>
+<tr>
+<td><code>离线模式</code></td>
+<td><code>soffline</code></td>
+<td>仅使用离线模型，准确率最高，但需等待较长时间才输出结果</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>大多数会议场景建议使用 <code>双通道模式</code>。如果网络延迟敏感或仅做简单速记，可选 <code>在线模式</code>。</p>
+</blockquote>
+<h4 id="912-%E8%AF%86%E5%88%AB%E8%AF%AD%E8%A8%80">9.1.2 识别语言</h4>
+<p>用于指定语音识别所使用的语言，支持以下选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>中文</code></td>
+<td><code>zh</code></td>
+<td><strong>默认值</strong>。适用于普通话会议</td>
+</tr>
+<tr>
+<td><code>自动检测</code></td>
+<td><code>auto</code></td>
+<td>系统自动判断语种，适合多语言混合场景</td>
+</tr>
+<tr>
+<td><code>英文</code></td>
+<td><code>en</code></td>
+<td>纯英文会议</td>
+</tr>
+<tr>
+<td><code>粤语</code></td>
+<td><code>yue</code></td>
+<td>粤语会议</td>
+</tr>
+<tr>
+<td><code>日语</code></td>
+<td><code>ja</code></td>
+<td>日语会议</td>
+</tr>
+<tr>
+<td><code>韩语</code></td>
+<td><code>ko</code></td>
+<td>韩语会议</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>切换语言后，页面会弹出提示确认当前语言已更新。建议在开始录音前设置好语言，录音过程中切换可能影响识别效果。</p>
+</blockquote>
+<h4 id="913-%E9%9F%B3%E9%A2%91%E8%AE%BE%E5%A4%87">9.1.3 音频设备</h4>
+<p>用于选择当前使用的麦克风或音频输入设备。</p>
+<ul>
+<li><strong>浏览器采集模式</strong>：下拉列表显示的是浏览器检测到的本机音频输入设备（如内置麦克风、USB 麦克风、蓝牙设备等）。使用前请确保浏览器已授权麦克风权限。</li>
+<li><strong>服务器采集模式</strong>：下拉列表显示的是服务器端可用的音频设备，由服务器负责采集音频，浏览器不传输音频数据。</li>
+</ul>
+<blockquote>
+<p>如果下拉列表为空，请检查设备是否已连接、浏览器是否已授权音频权限，或刷新页面重试。</p>
+</blockquote>
+<h4 id="914-%E8%AF%B4%E8%AF%9D%E4%BA%BA%E8%AF%86%E5%88%AB%E5%BC%80%E5%85%B3">9.1.4 说话人识别开关</h4>
+<p>控制是否启用说话人分离（Speaker Diarization）功能。</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>启用</code></td>
+<td>转录结果按不同说话人分段展示，每段标注说话人名称和时间范围，支持点击名称修改和注册</td>
+</tr>
+<tr>
+<td><code>禁用</code></td>
+<td>转录结果以纯文本方式连续展示，不区分说话人</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>启用说话人识别后，如果已注册了说话人声纹或绑定了串口单元号，系统会自动尝试匹配说话人身份。</p>
+</blockquote>
+<h4 id="915-%E8%AF%B4%E8%AF%9D%E4%BA%BA%E8%AE%BE%E7%BD%AE%E5%85%A5%E5%8F%A3">9.1.5 说话人设置入口</h4>
+<p>点击 <code>去配置</code> 链接按钮，可跳转到说话人声纹注册与管理页面。在该页面可以：</p>
+<ul>
+<li>注册新说话人的声纹</li>
+<li>查看和删除已注册的说话人</li>
+<li>管理说话人描述信息</li>
+</ul>
+<blockquote>
+<p>该入口等同于从&quot;指定参会人&quot;弹窗中点击&quot;没有合适参会人？去说话人设置&quot;的效果。</p>
+</blockquote>
+<h4 id="916-%E4%B8%AD%E8%8B%B1%E7%BF%BB%E8%AF%91%E5%BC%80%E5%85%B3">9.1.6 中英翻译开关</h4>
+<p>控制是否对识别结果进行中英互译。</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>启用</code></td>
+<td>每段转录文字下方会额外显示翻译结果，中文识别时翻译为英文，英文识别时翻译为中文</td>
+</tr>
+<tr>
+<td><code>禁用</code></td>
+<td>仅显示原始识别文字，不进行翻译</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>翻译功能需要后端翻译服务支持。启用后会增加一定的处理延迟。该设置会保存到浏览器本地存储，下次打开时自动恢复。</p>
+</blockquote>
+<h4 id="917-%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81%E5%8C%BA%E5%9F%9F%E6%98%BE%E7%A4%BA%E6%88%96%E9%9A%90%E8%97%8F">9.1.7 会议纪要区域显示或隐藏</h4>
+<p>控制录音页面右侧的会议纪要编辑区域是否可见。</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>显示</code></td>
+<td>页面右侧显示会议纪要编辑区域，同时设置面板下方会展开&quot;会议纪要模型服务配置&quot;选项</td>
+</tr>
+<tr>
+<td><code>隐藏</code></td>
+<td>右侧纪要区域收起，页面只保留左侧转录区域，设置面板中也不显示 LLM 配置项</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>如果本次会议不需要生成纪要，可以隐藏该区域以获得更大的转录查看空间。</p>
+</blockquote>
+<h4 id="918-%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81%E6%A8%A1%E5%9E%8B%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE">9.1.8 会议纪要模型服务配置</h4>
+<blockquote>
+<p>此配置区域仅在&quot;会议纪要区域&quot;开关为 <code>显示</code> 时才可见。</p>
+</blockquote>
+<p>会议纪要功能依赖大语言模型（LLM）进行内容总结和纪要生成。系统支持接入以下四种推理服务框架，用户需根据实际部署的模型服务进行配置：</p>
+<p><strong>支持的服务类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>服务类型</th>
+<th>说明</th>
+<th>默认端口</th>
+<th>API 风格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Ollama</code></td>
+<td>轻量级本地模型运行框架，适合个人或小团队部署</td>
+<td>11434</td>
+<td>自有 API（<code>/api/chat</code>）</td>
+</tr>
+<tr>
+<td><code>Xinference</code></td>
+<td>分布式模型推理平台，支持多种模型格式</td>
+<td>9997</td>
+<td>OpenAI 兼容</td>
+</tr>
+<tr>
+<td><code>vLLM</code></td>
+<td>高性能推理引擎，支持批处理和 PagedAttention</td>
+<td>8000</td>
+<td>OpenAI 兼容</td>
+</tr>
+<tr>
+<td><code>SGLang</code></td>
+<td>高效推理框架，支持结构化生成和 RadixAttention</td>
+<td>30000</td>
+<td>OpenAI 兼容</td>
+</tr>
+</tbody>
+</table>
+<p><strong>各服务的配置项：</strong></p>
+<p><strong>Ollama：</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>服务端点</td>
+<td>Ollama 的 API 聊天接口地址</td>
+<td><code>https://10.1.0.27/ollama/api/chat</code></td>
+</tr>
+<tr>
+<td>模型名称</td>
+<td>已通过 <code>ollama pull</code> 下载的模型名</td>
+<td><code>qwen3:30b-a3b-q4_K_M</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Ollama 不需要 API 密钥。开发环境会自动使用代理避免 CORS 问题。使用前请确保已运行 <code>ollama serve</code> 并已下载所需模型（<code>ollama pull 模型名</code>）。</p>
+</blockquote>
+<p><strong>Xinference：</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 端点</td>
+<td>Xinference 的 OpenAI 兼容接口地址</td>
+<td><code>http://localhost:9997/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td>模型名称</td>
+<td>已在 Xinference 中部署的模型名</td>
+<td><code>qwen-chat</code></td>
+</tr>
+<tr>
+<td>API 密钥</td>
+<td>可选，根据 Xinference 服务端安全配置决定是否需要</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>vLLM：</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 端点</td>
+<td>vLLM 的 OpenAI 兼容接口地址</td>
+<td><code>http://localhost:8000/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td>模型名称</td>
+<td>vLLM 启动时加载的模型路径或名称</td>
+<td><code>meta-llama/Llama-2-7b-chat-hf</code></td>
+</tr>
+<tr>
+<td>API 密钥</td>
+<td>可选，根据 vLLM 服务端安全配置决定是否需要</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>vLLM 启动命令参考：<code>python -m vllm.entrypoints.openai.api_server</code>。vLLM 适合需要高吞吐量推理的场景。</p>
+</blockquote>
+<p><strong>SGLang：</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 端点</td>
+<td>SGLang 的 OpenAI 兼容接口地址</td>
+<td><code>http://localhost:30000/v1/chat/completions</code></td>
+</tr>
+<tr>
+<td>模型名称</td>
+<td>SGLang 启动时加载的模型路径或名称</td>
+<td><code>meta-llama/Llama-2-7b-chat-hf</code></td>
+</tr>
+<tr>
+<td>API 密钥</td>
+<td>可选，根据 SGLang 服务端安全配置决定是否需要</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>SGLang 启动命令参考：<code>python -m sglang.launch_server</code>。SGLang 特别适合需要结构化输出的场景。</p>
+</blockquote>
+<p><strong>如何选择服务类型：</strong></p>
+<ul>
+<li>如果只有一台普通电脑，推荐使用 <code>Ollama</code>，安装简单、开箱即用</li>
+<li>如果需要高并发推理或批处理，推荐使用 <code>vLLM</code></li>
+<li>如果需要结构化生成输出，推荐使用 <code>SGLang</code></li>
+<li>如果已有 Xinference 集群环境，直接使用 <code>Xinference</code></li>
+</ul>
+<p>配置完成后，可点击面板底部的 <code>测试生成纪要</code> 按钮进行验证。</p>
+<h3 id="92-%E7%BA%AA%E8%A6%81%E6%A8%A1%E6%9D%BF%E9%80%89%E6%8B%A9">9.2 纪要模板选择</h3>
+<p><code>会议纪要模型服务配置</code> 中提供 <code>纪要模板</code> 下拉框。生成纪要前请根据会议类型选择模板：</p>
+<table>
+<thead>
+<tr>
+<th>模板</th>
+<th>推荐使用场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>标准会议纪要</code></td>
+<td>日常例会、工作沟通会、普通会议</td>
+<td>保留原有结构化纪要格式，包含摘要、议题、决议、待办等内容</td>
+</tr>
+<tr>
+<td><code>方案评审纪要</code></td>
+<td>方案评审、产品需求评审、系统优化评审</td>
+<td>按主题和方案归类，输出会议主题、发言人、会议摘要和待办事项</td>
+</tr>
+</tbody>
+</table>
+<p>注意事项：</p>
+<ul>
+<li>模板选择会自动保存到浏览器本地</li>
+<li>下次生成会议纪要时会默认沿用上次选择</li>
+<li>长会议进入分段处理时，最终合并后的正式纪要会按当前模板输出</li>
+</ul>
+<h3 id="93-%E7%94%9F%E6%88%90%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81">9.3 生成会议纪要</h3>
+<p>当前版本在录音页或上传识别页的设置面板中使用 <code>测试生成纪要</code> 按钮。</p>
+<p>这个按钮的作用是：</p>
+<ol>
+<li>校验当前 LLM 服务是否可用</li>
+<li>使用当前转录内容和已选择模板生成会议纪要</li>
+<li>将结果写入右侧纪要编辑区</li>
+</ol>
+<p>使用建议：</p>
+<ol>
+<li>先完成录音或上传识别，确保已有有效转录</li>
+<li>打开 <code>系统设置</code></li>
+<li>配置 LLM 服务参数</li>
+<li>选择合适的 <code>纪要模板</code></li>
+<li>点击 <code>测试生成纪要</code></li>
+<li>等待右侧生成内容</li>
+</ol>
+<h3 id="94-%E7%BC%96%E8%BE%91%E7%BA%AA%E8%A6%81">9.4 编辑纪要</h3>
+<p>右侧纪要区支持继续手动编辑。</p>
+<p>常见做法：</p>
+<ul>
+<li>调整标题和分段</li>
+<li>补充待办事项</li>
+<li>修改责任人和时间点</li>
+</ul>
+<p>编辑完成后，实时录音页面点击右上角 <code>保存会议</code>，上传识别页面点击 <code>保存识别结果</code>，保存最终内容。</p>
+<hr>
+<h2 id="10-%E5%8E%86%E5%8F%B2%E4%BC%9A%E8%AE%AE%E7%AE%A1%E7%90%86">10. 历史会议管理</h2>
+<h3 id="101-%E6%9F%A5%E7%9C%8B%E4%BC%9A%E8%AE%AE%E8%AF%A6%E6%83%85">10.1 查看会议详情</h3>
+<p>在首页会议列表点击 <code>查看</code>，可进入会议详情页。</p>
+<p>详情页通常可查看：</p>
+<ul>
+<li>会议基础信息</li>
+<li>音频或视频播放器</li>
+<li>转录内容</li>
+<li>会议纪要</li>
+</ul>
+<h3 id="102-%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6">10.2 下载文件</h3>
+<p>首页和详情页都支持下载：</p>
+<ul>
+<li>音频或上传音视频</li>
+<li>转录</li>
+<li>纪要</li>
+</ul>
+<p>如果某类文件尚未生成，对应按钮可能不可用。</p>
+<h3 id="103-%E5%88%A0%E9%99%A4%E4%BC%9A%E8%AE%AE">10.3 删除会议</h3>
+<p>点击 <code>删除</code> 后系统会二次确认，确认后该会议记录将被移除。</p>
+<h3 id="104-%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD">10.4 批量下载</h3>
+<p>首页顶部支持 <code>批量下载</code>，用于导出当前页面中可见会议的文本信息。</p>
+<hr>
+<h2 id="11-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98">11. 常见问题</h2>
+<h3 id="111-api-%E7%AB%AF%E5%8F%A3-8080-%E8%A2%AB%E5%8D%A0%E7%94%A8">11.1 API 端口 8080 被占用</h3>
+<p>现象：</p>
+<pre class="hljs"><code><div>Address already in use
+Port 8080 is in use by another program
+</div></code></pre>
+<p>处理方法：</p>
+<ul>
+<li>停止占用 <code>8080</code> 的程序</li>
+<li>或在 <code>系统设置</code> 中修改 <code>API端口</code> 后重新启动服务</li>
+</ul>
+<h3 id="112-%E5%BC%80%E5%A7%8B%E5%BD%95%E9%9F%B3%E5%90%8E%E6%B2%A1%E6%9C%89%E8%AF%86%E5%88%AB%E7%BB%93%E6%9E%9C">11.2 开始录音后没有识别结果</h3>
+<p>请依次检查：</p>
+<ol>
+<li>后端是否正常启动</li>
+<li>浏览器是否授权麦克风</li>
+<li>是否选择了正确的音频设备</li>
+<li>当前识别服务地址和端口是否正确</li>
+</ol>
+<h3 id="113-%E6%8C%87%E5%AE%9A%E5%8F%82%E4%BC%9A%E4%BA%BA%E6%B2%A1%E6%9C%89%E7%94%9F%E6%95%88">11.3 指定参会人没有生效</h3>
+<p>请确认：</p>
+<ul>
+<li>已点击 <code>确认指定</code></li>
+<li>当前正在使用同一个录音会话</li>
+<li>如需恢复自动判断，已点击 <code>恢复串口</code></li>
+</ul>
+<p>说明：</p>
+<ul>
+<li>手动指定只作用于当前录音会话</li>
+<li>不会改写全局串口绑定配置</li>
+</ul>
+<h3 id="114-%E4%BF%AE%E6%94%B9%E4%B8%B2%E5%8F%A3%E9%85%8D%E7%BD%AE%E5%90%8E%E6%B2%A1%E6%9C%89%E5%8F%98%E5%8C%96">11.4 修改串口配置后没有变化</h3>
+<p>原因通常是串口配置需要重启后端才会生效。</p>
+<p>处理方法：</p>
+<ol>
+<li>保存串口配置</li>
+<li>停止当前 ASR 服务</li>
+<li>重新启动后端</li>
+</ol>
+<h3 id="115-%E8%AF%B4%E8%AF%9D%E4%BA%BA%E5%90%8D%E7%A7%B0%E4%B8%8D%E8%83%BD%E4%BF%AE%E6%94%B9%E6%88%96%E6%B3%A8%E5%86%8C">11.5 说话人名称不能修改或注册</h3>
+<p>如果是通过转录结果里的说话人名称去做“修改并注册”，需要先停止录音，让系统生成可用音频片段。</p>
+<h3 id="116-%E6%B2%A1%E6%9C%89%E5%B7%B2%E6%B3%A8%E5%86%8C%E5%8F%82%E4%BC%9A%E4%BA%BA%E6%80%8E%E4%B9%88%E5%8A%9E">11.6 没有已注册参会人怎么办</h3>
+<p>有两种处理方式：</p>
+<ul>
+<li>在 <code>指定参会人</code> 弹窗中直接输入姓名</li>
+<li>进入 <code>说话人设置</code> 先完成声纹注册</li>
+</ul>
+<h3 id="117-%E4%BC%9A%E8%AE%AE%E7%BA%AA%E8%A6%81%E7%94%9F%E6%88%90%E5%A4%B1%E8%B4%A5">11.7 会议纪要生成失败</h3>
+<p>请检查：</p>
+<ul>
+<li>LLM 服务是否已启动</li>
+<li>服务端点、模型名、API Key 是否正确</li>
+<li>当前是否已有有效转录内容</li>
+<li>网络是否可访问对应模型服务</li>
+</ul>
+<h3 id="118-%E4%B8%8A%E4%BC%A0%E9%9F%B3%E8%A7%86%E9%A2%91%E8%AF%86%E5%88%AB%E5%A4%B1%E8%B4%A5">11.8 上传音视频识别失败</h3>
+<p>请检查：</p>
+<ul>
+<li>上传文件是否为系统支持的音频或视频格式</li>
+<li>文件是否过大或已损坏</li>
+<li>FFmpeg 是否可用，视频文件是否能正常抽取音轨</li>
+<li>后端 API 服务是否正常运行</li>
+<li>如果开启声纹匹配后处理耗时过长，可先关闭 <code>声纹匹配</code> 后重试</li>
+</ul>
+<hr>
+<h2 id="12-%E5%BF%AB%E9%80%9F%E6%93%8D%E4%BD%9C%E5%BB%BA%E8%AE%AE">12. 快速操作建议</h2>
+<h3 id="121-%E5%AE%9E%E6%97%B6%E4%BC%9A%E8%AE%AE%E8%AE%B0%E5%BD%95">12.1 实时会议记录</h3>
+<p>如果你要进行一次现场会议记录，推荐按下面顺序操作：</p>
+<ol>
+<li>启动前端</li>
+<li>在 <code>系统设置</code> 中启动后端</li>
+<li>首页点击 <code>实时识别</code> 或左侧 <code>开始录音</code></li>
+<li>需要时先 <code>指定参会人</code></li>
+<li>录音结束后检查转录内容</li>
+<li>在录音页 <code>系统设置</code> 中选择 <code>纪要模板</code></li>
+<li>点击 <code>测试生成纪要</code></li>
+<li>修订右侧纪要内容</li>
+<li>点击 <code>保存会议</code></li>
+<li>返回首页查看、下载或分享</li>
+</ol>
+<h3 id="122-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E8%BD%AC%E6%96%87%E5%AD%97%E5%B9%B6%E7%94%9F%E6%88%90%E7%BA%AA%E8%A6%81">12.2 上传文件转文字并生成纪要</h3>
+<p>如果你已有录音或会议视频，推荐按下面顺序操作：</p>
+<ol>
+<li>启动前端和后端</li>
+<li>首页点击 <code>上传音视频</code></li>
+<li>设置预计人数、热词范围、声纹匹配和中英翻译</li>
+<li>点击 <code>选择文件</code> 上传本地音频或视频</li>
+<li>等待上传识别完成，检查转录和说话人分段</li>
+<li>需要时进入 <code>说话人整理</code> 进行更名、合并或注册声纹</li>
+<li>在 <code>系统设置</code> 中选择 <code>纪要模板</code></li>
+<li>点击 <code>测试生成纪要</code></li>
+<li>修订右侧纪要内容</li>
+<li>点击 <code>保存识别结果</code></li>
+</ol>
+<hr>
+<p>如需继续补充截图版手册、Word 版手册或培训版流程图，可在此文档基础上继续扩展。</p>
+
+</body>
+</html>

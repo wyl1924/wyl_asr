@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VoiceRecognitionDisplay.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VoiceRecognitionDisplay.Views.SharePanel"
+             x:DataType="vm:ShareViewModel"
+             Background="Transparent">
+
+    <Grid Background="Transparent"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Top">
+        <Border Width="450"
+                Background="#FFFFFF"
+                BorderBrush="#DDDDDD"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="30">
+            <StackPanel Spacing="16">
+            <TextBlock Text="分享内容"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+
+            <Border BorderBrush="#CCCCCC"
+                    BorderThickness="1"
+                    Padding="10"
+                    HorizontalAlignment="Center">
+                <Image Source="{Binding QrCodeImage}"
+                       Width="200"
+                       Height="200"
+                       Stretch="Uniform"/>
+            </Border>
+
+            <TextBlock Text="扫描二维码，查看文件内容"
+                       HorizontalAlignment="Center"
+                       Foreground="#666666"/>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="文件名称:" Margin="0,0,0,5"/>
+                <TextBlock Text="{Binding FileName}"
+                           FontWeight="Bold"
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Spacing="6">
+                <TextBlock Text="访问链接:" Margin="0,0,0,5"/>
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBox Grid.Column="0"
+                             Text="{Binding ShareUrl}"
+                             IsReadOnly="True"
+                             Margin="0,0,10,0"
+                             TextWrapping="Wrap"/>
+                    <Button Grid.Column="1"
+                            Content="复制链接"
+                            Command="{Binding CopyCommand}"
+                            Padding="15,5"/>
+                </Grid>
+            </StackPanel>
+
+            <TextBlock Text="获得链接的人都可以访问（仅支持查看，链接90天内有效）"
+                       FontSize="12"
+                       Foreground="#666666"
+                       TextWrapping="Wrap"/>
+
+            <Button Content="关闭"
+                    Command="{Binding CloseCommand}"
+                    HorizontalAlignment="Center"
+                    Padding="40,10"
+                    Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

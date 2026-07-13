@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <!-- 自动检测 Android SDK 路径 -->
+    <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == '' And Exists('$(HOME)/Library/Android/sdk')">$(HOME)/Library/Android/sdk</AndroidSdkDirectory>
+    <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == '' And Exists('/Users/$(USER)/Library/Android/sdk')">/Users/$(USER)/Library/Android/sdk</AndroidSdkDirectory>
+    
+    <!-- 如果安装了 Android Studio，使用其 SDK -->
+    <AndroidSdkDirectory Condition="'$(AndroidSdkDirectory)' == '' And Exists('$(HOME)/Library/Developer/Xamarin/android-sdk-macosx')">$(HOME)/Library/Developer/Xamarin/android-sdk-macosx</AndroidSdkDirectory>
+  </PropertyGroup>
+</Project>

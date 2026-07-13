@@ -1,0 +1,140 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:VoiceRecognitionDisplay.ViewModels"
+        xmlns:views="using:VoiceRecognitionDisplay.Views"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="260"
+        x:Class="VoiceRecognitionDisplay.Views.MainView"
+        x:DataType="vm:MainWindowViewModel"
+        Background="Transparent">
+
+    <Grid Background="Transparent"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Bottom"
+          RowDefinitions="Auto,Auto,Auto"
+          Margin="0"
+          ClipToBounds="False">
+        <ContentControl x:Name="ModalContentHost"
+                        Grid.Row="0"
+                        Background="Transparent"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Top"
+                        VerticalAlignment="Bottom"
+                        IsVisible="False"/>
+
+        <Border x:Name="ModalSpacing"
+                Grid.Row="1"
+                Height="12"
+                Background="Transparent"
+                IsVisible="False"/>
+
+        <Border x:Name="DraggableBorder"
+                Grid.Row="2"
+                BorderBrush="White"
+                BorderThickness="2"
+                CornerRadius="{Binding WindowCornerRadius}"
+                Background="{Binding BackgroundColor}"
+                Padding="15"
+                Width="{Binding WindowWidth}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom">
+            <Grid RowDefinitions="Auto,Auto">
+
+                <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Margin="0,0,0,10">
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal"
+                                Spacing="10"
+                                VerticalAlignment="Center">
+                        <Border Width="32"
+                                Height="32"
+                                CornerRadius="16"
+                                Background="#444444">
+                            <TextBlock Text="👤"
+                                       FontSize="20"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <TextBlock Text="{Binding SpeakerName}"
+                                   FontFamily="{Binding FontFamily}"
+                                   FontSize="14"
+                                   FontWeight="Normal"
+                                   FontStyle="Normal"
+                                   Foreground="{Binding FontColor}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                Spacing="8"
+                                VerticalAlignment="Center">
+                        <Button x:Name="ShareButton"
+                                Command="{Binding ShareCommand}"
+                                ToolTip.Tip="分享"
+                                Width="32"
+                                Height="32"
+                                Padding="0"
+                                Background="#444444"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="16">
+                            <TextBlock Text="📤"
+                                       FontSize="16"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Button>
+
+                        <Button x:Name="SettingsButton"
+                                Command="{Binding OpenSettingsCommand}"
+                                ToolTip.Tip="设置"
+                                Width="32"
+                                Height="32"
+                                Padding="0"
+                                Background="#444444"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="16">
+                            <TextBlock Text="⚙️"
+                                       FontSize="16"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Button>
+
+                        <Button x:Name="CloseButton"
+                                Command="{Binding CloseCommand}"
+                                ToolTip.Tip="关闭"
+                                Width="32"
+                                Height="32"
+                                Padding="0"
+                                Background="#666666"
+                                Foreground="White"
+                                BorderThickness="0"
+                                CornerRadius="16">
+                            <TextBlock Text="✕"
+                                       FontSize="18"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <views:ScrollingSubtitleControl Grid.Row="1"
+                                               x:Name="SubtitleControl"
+                                               HorizontalAlignment="Stretch"
+                                               ScrollingText="{Binding ScrollingText}"
+                                               TranslationText="{Binding TranslationText}"
+                                               RecognitionMode="{Binding RecognitionMode}"
+                                               ScrollSpeed="{Binding ScrollSpeed}"
+                                               MaxDisplayLines="{Binding MaxDisplayLines}"
+                                               FontFamily="{Binding FontFamily}"
+                                               FontSize="{Binding FontSize}"
+                                               FontColor="{Binding FontColor}"
+                                               FontWeight="{Binding FontWeight}"
+                                               FontStyle="{Binding FontStyle}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,34 @@
+callback:
+  save_to_database: true
+  trigger_asr: true
+  websocket_broadcast: true
+serial:
+  baudrate: 9600
+  bytesize: 8
+  enabled: true
+  log_level: INFO
+  logging: true
+  parity: none
+  port: /dev/cu.usbserial-A400CKPT
+  protocol_type: auto
+  stopbits: 1
+  timeout: 1
+speaker_identification:
+  mode: hybrid
+  serial_timeout: 30
+  unit_speaker_mapping:
+    1: 主席
+    2: 代表1
+    3: 代表2
+    4: 代表3
+    5: 代表4
+    6: 代表5
+    7: 代表6
+    8: 代表7
+    9: 代表8
+    10: 代表9
+    11: 代表10
+    12: 代表11
+    13: 代表12
+    14: 代表13
+    15: 代表14

@@ -1,0 +1,358 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:VoiceRecognitionDisplay.ViewModels"
+             xmlns:converters="using:VoiceRecognitionDisplay.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="VoiceRecognitionDisplay.Views.SettingsPanel"
+             x:DataType="vm:SettingsViewModel"
+             Background="Transparent">
+
+    <UserControl.Resources>
+        <converters:BoolToColorConverter x:Key="BoolToColorConverter"/>
+        <SolidColorBrush x:Key="TextControlForeground">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="TextControlForegroundPointerOver">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="TextControlForegroundFocused">#000000</SolidColorBrush>
+        <SolidColorBrush x:Key="TextControlForegroundDisabled">#666666</SolidColorBrush>
+    </UserControl.Resources>
+
+    <UserControl.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="ComboBox">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="ToggleSwitch">
+            <Setter Property="Foreground" Value="#000000"/>
+        </Style>
+
+        <Style Selector="ToggleSwitch /template/ Border#SwitchKnobBounds">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style Selector="ToggleSwitch:checked /template/ Border#SwitchKnobBounds">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="BorderBrush" Value="#007ACC"/>
+        </Style>
+
+        <Style Selector="ToggleSwitch /template/ Border#SwitchKnob">
+            <Setter Property="Background" Value="#FFFFFF"/>
+        </Style>
+
+        <Style Selector="Button.CancelButton">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.CancelButton:pointerover">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.CancelButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.CancelButton:pressed">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.CancelButton:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#E0E0E0"/>
+        </Style>
+
+        <Style Selector="Button.SaveButton">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <Style Selector="Button.SaveButton:pointerover">
+            <Setter Property="Background" Value="#007ACC"/>
+        </Style>
+
+        <Style Selector="Button.SaveButton:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#007ACC"/>
+        </Style>
+
+        <Style Selector="Button.SaveButton:pressed">
+            <Setter Property="Background" Value="#007ACC"/>
+        </Style>
+
+        <Style Selector="Button.SaveButton:pressed /template/ ContentPresenter">
+            <Setter Property="Background" Value="#007ACC"/>
+        </Style>
+    </UserControl.Styles>
+
+    <Grid Background="Transparent"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Top">
+        <Border Width="320"
+                Height="580"
+                Background="#FAFAFA"
+                BorderBrush="#CCCCCC"
+                BorderThickness="1"
+                CornerRadius="16">
+            <Grid RowDefinitions="*,Auto">
+            <ScrollViewer Grid.Row="0"
+                          Padding="20,15"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="8">
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="界面宽:"
+                                   FontSize="14"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        <Grid Grid.Column="1" ColumnDefinitions="80,*,30">
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding WindowWidth}"
+                                     Watermark="10-100"
+                                     Height="32"/>
+                            <Slider Grid.Column="1"
+                                    Value="{Binding WindowWidth}"
+                                    Minimum="10"
+                                    Maximum="100"
+                                    TickFrequency="1"
+                                    IsSnapToTickEnabled="True"
+                                    Margin="10,0,10,0"
+                                    Foreground="#2196F3"
+                                    Background="#E0E0E0"
+                                    VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2"
+                                       Text="%"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="100,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="圆角:"
+                                   VerticalAlignment="Center"/>
+                        <Grid Grid.Column="1" ColumnDefinitions="80,*">
+                            <TextBox Grid.Column="0"
+                                     Text="{Binding CornerRadius}"
+                                     Watermark="0-100"
+                                     Height="32"/>
+                            <Slider Grid.Column="1"
+                                    Value="{Binding CornerRadius}"
+                                    Minimum="0"
+                                    Maximum="100"
+                                    TickFrequency="1"
+                                    Foreground="#2196F3"
+                                    Background="#716e6eff"
+                                    IsSnapToTickEnabled="True"
+                                    Margin="10,0,0,0"
+                                    VerticalAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="背景色:"
+                                   VerticalAlignment="Center"/>
+                        <Button Grid.Column="1"
+                                Command="{Binding OpenBackgroundColorPickerCommand}"
+                                HorizontalAlignment="Left"
+                                Width="50"
+                                Height="32"
+                                Padding="0"
+                                Background="{Binding BackgroundColorBrush}"
+                                BorderBrush="#CCCCCC"
+                                BorderThickness="1"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="字体:"
+                                   VerticalAlignment="Center"/>
+                        <ComboBox Grid.Column="1"
+                                  ItemsSource="{Binding AvailableFonts}"
+                                  SelectedItem="{Binding SelectedFont}"
+                                  HorizontalAlignment="Stretch"
+                                  Height="32"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="字体大小:"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                            <TextBox Text="{Binding FontSize}"
+                                     Watermark="1-100"
+                                     Width="60"
+                                     Height="32"/>
+                            <Button Command="{Binding OpenColorPickerCommand}"
+                                    Width="40"
+                                    Height="32"
+                                    Padding="0"
+                                    Background="{Binding FontColorBrush}"
+                                    BorderBrush="#333333"
+                                    BorderThickness="2"
+                                    CornerRadius="4"
+                                    ToolTip.Tip="字体颜色"/>
+                            <Button Command="{Binding ToggleBoldCommand}"
+                                    Width="40"
+                                    Height="32"
+                                    BorderBrush="#CCCCCC"
+                                    BorderThickness="1"
+                                    Background="{Binding IsBold, Converter={StaticResource BoolToColorConverter}}"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    ToolTip.Tip="粗体">
+                                <TextBlock Text="B"
+                                           FontWeight="Bold"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Button>
+                            <Button Command="{Binding ToggleItalicCommand}"
+                                    Width="40"
+                                    Height="32"
+                                    BorderBrush="#CCCCCC"
+                                    BorderThickness="1"
+                                    Background="{Binding IsItalic, Converter={StaticResource BoolToColorConverter}}"
+                                    HorizontalContentAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    ToolTip.Tip="斜体">
+                                <TextBlock Text="I"
+                                           Padding="3,0"
+                                           FontStyle="Italic"
+                                           FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="显示英文:"
+                                   VerticalAlignment="Center"/>
+                        <ToggleSwitch Grid.Column="1"
+                                      IsChecked="{Binding ShowEnglish}"
+                                      OnContent="开"
+                                      OffContent="关"
+                                      HorizontalAlignment="Left"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="显示行数:"
+                                   VerticalAlignment="Center"/>
+                        <TextBox Grid.Column="1"
+                                 Text="{Binding MaxDisplayLines}"
+                                 Watermark="1-20"
+                                 Height="32"/>
+                    </Grid>
+
+                    <TextBlock Text="连接设置"
+                               FontWeight="Bold"
+                               FontSize="15"
+                               Margin="0,10,0,5"/>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="安全连接:"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10">
+                            <ToggleSwitch IsChecked="{Binding UseSecureConnection}"
+                                          OnContent="wss://"
+                                          OffContent="ws://"
+                                          HorizontalAlignment="Left"/>
+                            <TextBlock Text="(启用 SSL/TLS 加密)"
+                                       Foreground="#666666"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="服务器 IP:"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Spacing="4">
+                            <TextBox Text="{Binding ServerIp}"
+                                     Watermark="127.0.0.1 或 192.168.1.100"
+                                     Height="32"/>
+                            <TextBlock Text="{Binding ServerIpError}"
+                                       Foreground="#D32F2F"
+                                       FontSize="11"
+                                       IsVisible="{Binding ServerIpError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="端口号:"
+                                   VerticalAlignment="Center"/>
+                        <StackPanel Grid.Column="1" Spacing="4">
+                            <TextBox Text="{Binding ServerPort}"
+                                     Watermark="10095"
+                                     Width="120"
+                                     HorizontalAlignment="Left"
+                                     Height="32"/>
+                            <TextBlock Text="{Binding ServerPortError}"
+                                       Foreground="#D32F2F"
+                                       FontSize="11"
+                                       IsVisible="{Binding ServerPortError, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="80,*">
+                        <TextBlock Grid.Column="0"
+                                   Text="完整地址:"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding WebSocketUrl}"
+                                   Foreground="#666666"
+                                   FontSize="12"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="Wrap"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+                <Border Grid.Row="1"
+                        Background="#FFFFFF"
+                        BorderBrush="#E0E0E0"
+                        BorderThickness="0,1,0,0"
+                        Padding="20,12"
+                        CornerRadius="0,0,16,16">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                Spacing="10">
+                        <Button Content="取消"
+                                Command="{Binding CancelCommand}"
+                                Classes="CancelButton"
+                                Width="80"
+                                Height="32"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"/>
+                        <Button Content="保存设置"
+                                Command="{Binding SaveCommand}"
+                                Classes="SaveButton"
+                                Width="80"
+                                Height="32"
+                                HorizontalContentAlignment="Center"
+                                VerticalContentAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+        </Grid>
+</UserControl>

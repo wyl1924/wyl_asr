@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="100"
+             x:Class="VoiceRecognitionDisplay.Views.ScrollingSubtitleControl"
+             x:Name="Root">
+
+  <Grid>
+    <StackPanel>
+      <!-- 中文文本显示 -->
+      <TextBlock Name="ScrollingTextBlock"
+                 Text="{Binding ScrollingText, ElementName=Root}"
+                 FontFamily="{Binding FontFamily, ElementName=Root}"
+                 FontSize="{Binding FontSize, ElementName=Root}"
+                 Foreground="{Binding FontColor, ElementName=Root}"
+                 FontWeight="{Binding FontWeight, ElementName=Root}"
+                 FontStyle="{Binding FontStyle, ElementName=Root}"
+                 LineHeight="24"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 Margin="10,10,10,2"/>
+
+      <!-- 分隔线 -->
+      <Border Height="1"
+              Background="#FFD700"
+              Margin="10,2,10,2"
+              IsVisible="{Binding HasTranslation, ElementName=Root}"/>
+
+      <!-- 英文翻译显示 -->
+      <TextBlock Name="TranslationTextBlock"
+                 Text="{Binding TranslationText, ElementName=Root}"
+                 FontSize="{Binding TranslationFontSize, ElementName=Root}"
+                 Foreground="{Binding TranslationFontColor, ElementName=Root}"
+                 FontStyle="Italic"
+                 TextWrapping="Wrap"
+                 LineHeight="20"
+                 IsVisible="{Binding HasTranslation, ElementName=Root}"
+                 VerticalAlignment="Top"
+                 HorizontalAlignment="Left"
+                 Margin="10,2,10,10"/>
+    </StackPanel>
+  </Grid>
+
+</UserControl>
